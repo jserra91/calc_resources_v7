@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name OGame: Recursos Ampliados
 // @description OGame: Detalla la produccion de recursos en Opciones de Recursos
-// @version 1.9.5
+// @version 2.3.0
 // @creator jgarrone
 // @copyright 2016, jgarrone
 // @homepageURL https://openuserjs.org/scripts/jgarrone/OGame_Recursos_Ampliados
@@ -11,13 +11,13 @@
 // @grant none
 // @license MIT
 // Se le hicieron solo unas modificaciones para que trabaje en el version de Ogame 6.5.1
-// @author jgarrone todos los creditos
-// 
+// @author jgarrone todos los creditos // Aporte de labelladurmiente para actualizar a Versión 7.1
+//
 // ==/UserScript==
 
 (function () {
     
-    var SCRIPT_VERSION = "1.9.5";
+    var SCRIPT_VERSION = "2.3.0";
     
     var unsafe = (typeof unsafeWindow) != "undefined" ? unsafeWindow : window;
     
@@ -92,6 +92,9 @@
         ,edlm: "EDLM"
         ,acorazado: "Acorazado"
         ,satelite: "Sat. Solar"
+        ,Taladrador: "Taladrador"
+        ,Explorador: "Explorador"
+        ,Segador:"Segador"
         
         ,lanzamisiles: "Lanzamisiles"
         ,laser_peq: "Láser Pequeño"
@@ -420,51 +423,54 @@
         ,diaria: "Ημερήσια"
         ,semanal: "Εβδομαδιαία"
         ,mensual: "Μηνιαία"
-        ,planetas: "πλανήτες"
+        ,planetas: "Πλανήτες"
         ,produccion: "Παραγωγή"
         ,excedentes: "Υπόλοιπο ημερησίως"
-        ,dia: "Μέρα"
+        ,dia: "Ημέρα"
         ,semana: "Εβδομάδα"
         ,hora: "Ωριαία"
         ,produccion_flota: "Εκτιμώμενη παραγωγή στόλου"
         ,produccion_def: "Εκτιμώμενη παραγωγή άμυνας"
         ,producc_diaria: "Ημερήσια παραγωγή"
-        ,translate_by: "Μετάφραση στα Ελληνικά: MasterMind33"
+        ,translate_by: "Μετάφραση στα Ελληνικά: Gagarin"
         ,bbcode: "BBCode"
-        ,almacenes: "Storage"
-        ,flota: "Fleet"
-        ,defensa: "Defense"
-        ,produccion_basica: "Basic production"
-        ,produccion_completa: "Complete production"
-        ,geologo: "Geologist"
+        ,almacenes: "Αποθήκες"
+        ,flota: "Στόλος"
+        ,defensa: "Άμυνα"
+        ,produccion_basica: "Βασική Παραγωγή"
+        ,produccion_completa: "Πλήρης Παραγωγή"
+        ,geologo: "Γεωλόγος"
         
-        ,p_carga: "Μικ. Μεταγωγικό"
-        ,g_carga: "Μεγ.Μεταγωγικό"
-        ,c_ligero: "Ελαφ. Μαχητικό"
+        ,p_carga: "Μικρό Μεταγωγικό"
+        ,g_carga: "Μεγάλο Μεταγωγικό"
+        ,c_ligero: "Ελαφρύ Μαχητικό"
         ,c_pesado: "Βαρύ Μαχητικό"
         ,crucero: "Καταδιωκτικό"
         ,nbatalla: "Καταδρομικό"
-        ,colonizador: "Σκάφος Αποικ."
+        ,colonizador: "Σκάφος Αποικιοποίησης"
         ,reciclador: "Ανακυκλωτής"
-        ,sonda: "Κατασκοπ. Στέλ."
+        ,sonda: "Κατασκοπευτικό Στέλεχος"
         ,bombardero: "Βομβαρδιστικό"
         ,destructor: "Destroyer"
         ,edlm: "Deathstar"
-        ,acorazado: "Θωρ. Αναχαίτ."
-        ,satelite: "Ηλ. Συλλέκτες"
+        ,acorazado: "Θωρήκτο Αναχαίτισης"
+        ,satelite: "Ηλιακοί Συλλέκτες"
+        ,Taladrador: "Crawler"
+        ,Explorador: "Pathfinder"
+        ,Segador:"Reaper"
         
-        ,lanzamisiles: "Εκτ. Πυραύλων"
+        ,lanzamisiles: "Εκτοξευτής Πυραύλων"
         ,laser_peq: "Ελαφρύ Λέιζερ"
         ,laser_gra: "Βαρύ Λέιζερ"
         ,c_gaus: "Κανόνι Gauss"
         ,c_ionico: "Κανόνι Ιόντων"
-        ,c_plasma: "Πυρ. Πλάσματος"
-        ,m_anti: "Αντι-Βαλλιστ. Π."
-        ,m_plan: "Διαπλανητικοί Π."
+        ,c_plasma: "Πυργίσκοι Πλάσματος"
+        ,m_anti: "Αντι-Βαλλιστικοί Πύραυλοι"
+        ,m_plan: "Διαπλανητικοί Πύραυλοι"
         
-        ,h_hora: "ω"
-        ,d_dia: "μ"
-        ,s_semana: "ε"
+        ,h_hora: "Ω"
+        ,d_dia: "Μ"
+        ,s_semana: "Ε"
     };
     
     LANG_DA = {
@@ -1266,6 +1272,9 @@
         text = text.replace('{EDLM}', LANG.edlm)
         text = text.replace('{ACORAZADO}', LANG.acorazado)
         text = text.replace('{SATELITE}', LANG.satelite)
+        text = text.replace('{TALADRADOR}', LANG.Taladrador)
+        text = text.replace('{EXPLORADOR}', LANG.Explorador)
+        text = text.replace('{SEGADOR}', LANG.Segador)
         
         text = text.replace('{LANZAMISILES}', LANG.lanzamisiles)
         text = text.replace('{LASER_PEQ}', LANG.laser_peq)
@@ -1288,6 +1297,7 @@
             [/{COLOR_METAL}/gi, '#9999ff'],
             [/{COLOR_CRISTAL}/gi, '#00ff00'],
             [/{COLOR_DEUTERIO}/gi, '#ff00ff'],
+            [/{COLOR_NARANJA}/gi, '#ff4000'],
             [/{COLOR_TOTAL1}/gi, '#999900'], 
             [/{COLOR_TOTAL2}/gi, '#ffff00']];
         
@@ -1367,9 +1377,18 @@
         if(tipo == 0) {
             document.getElementById("txtBB").value = codificar(bbcode_basico, "phpbb");
             document.getElementById("preview").innerHTML = codificar(bbcode_basico, "html");
-        } else {
+        }
+		if(tipo == 1) {				
             document.getElementById("txtBB").value = codificar(bbcode_completo, "phpbb");
             document.getElementById("preview").innerHTML = codificar(bbcode_completo, "html");
+        }
+		if(tipo == 2) {				
+            document.getElementById("txtBB").value = codificar(bbcode_basico2, "phpbb");
+            document.getElementById("preview").innerHTML = codificar(bbcode_basico2, "html");
+        }
+		if(tipo == 3) {				
+            document.getElementById("txtBB").value = codificar(bbcode_completo2, "phpbb");
+            document.getElementById("preview").innerHTML = codificar(bbcode_completo2, "html");
         }
         
     }
@@ -1411,7 +1430,7 @@
         var deuterio_gasto_fusion;
 		var deuterio_geologo;//Es parte de la tabla asi que se obtiene igual de la mina.--------------------------------VERSION OGAME 6.5.1 +
 		var deuterio_oficiales;//Es parte de la tabla asi que se obtiene igual de la mina.--------------------------------VERSION OGAME 6.5.1 +
-        var deuterio_pla0sma;//Es parte de la tabla asi que se obtiene igual de la mina.--------------------------------VERSION OGAME 6.5.1 +
+        var deuterio_plasma;//Es parte de la tabla asi que se obtiene igual de la mina.--------------------------------VERSION OGAME 6.5.1 +
         var deuterio_taladrador;// VERSION OGAME 7.0.0
         var deuterio_classe;// VERSION OGAME 7.0.0
         
@@ -1672,6 +1691,11 @@
             ret = ret.replace(/\./g, "").replace(/\,/g, "").trim();
         }
         
+        // Taladrador (Número: x.xxx)
+        if(str.toUpperCase() == "TALADRADOR") {
+            ret = getContenido(lista, 9,0).innerHTML;
+            ret = ret.replace(/\./g, "").replace(/\,/g, "").trim();
+        }
         if(str.toUpperCase() == "PLASMA") {
             ret = getContenido(lista, 10,0).innerHTML;
             ret = ret.substring(0, ret.indexOf("("));
@@ -1683,6 +1707,10 @@
             ret = ret.replace(/\./g, "").replace(/\,/g, "").trim();
         }
         
+        if(str.toUpperCase() == "RECOLECTOR") {
+            ret = getContenido(lista, 15,0).innerHTML;
+            ret = ret.replace(/\./g, "").replace(/\,/g, "").trim();
+        }
         if(str.toUpperCase() == "TOTAL_DIA") {
             ret = getContenido(lista, 18,0).innerHTML;
             ret = ret.replace(/\./g, "").replace(/\,/g, "").trim();
@@ -1726,7 +1754,28 @@
             
             var lista = getElementsByClass("list")[0];
             
-            
+            /*
+            //Orden de filas actual Versión 7.1
+            Fila 1 Titulos
+            Fila 2 Produccion Base
+            Fila 3 Mina de Metal
+            Fila 4 Mina de Cristal
+            Fila 5 Mina de Deuterio
+            Fila 6 Planta de Energía Solar
+            Fila 7 Planta de fusión
+            Fila 8 Satélite solar 
+            Fila 9 Taladrador 
+            Fila 10 Tecnología de plasma
+            Fila 11 Amplificadores
+            Fila 12 Geólogo
+            Fila 13 Ingeniero
+            Fila 14 Equipo de comando
+            Fila 15 Clase elegida (Recolector, Descubridor, General)
+            Fila 16 Capacidad de Almacenamiento
+            Fila 17 Total por hora
+            Fila 18 Total por día
+            Fila 19 Total por semana
+            */
             // ------- metal --------------------
             
             // produccion base
@@ -1745,19 +1794,25 @@
             parcial = getContenido(lista, 3,0).innerHTML;
             parcial = parcial.replace(/\D/g,'');
             planeta.metal_nivel_mina = parseInt(parcial)
-            
-            // amplificador
-            parcial = getContenido(lista, 11,2).innerHTML;
+
+	    // taladrador
+            parcial = getContenido(lista, 9,2).innerHTML;
             parcial = parcial.substring(parcial.indexOf('">')+2, parcial.indexOf("</span>"));
             parcial = parcial.replace(/\./g, "").replace(/\,/g, "").trim();
-            planeta.metal_produccion_amplificador = parseInt(parcial);
-            
-			// plasma
+            planeta.metal_taladrador = parseInt(parcial);
+
+
+            // plasma
             parcial = getContenido(lista, 10,2).innerHTML;
             parcial = parcial.substring(parcial.indexOf('">')+2, parcial.indexOf("</span>"));
             parcial = parcial.replace(/\./g, "").replace(/\,/g, "").trim();
             planeta.metal_plasma = parseInt(parcial);
 			
+	    // amplificador
+            parcial = getContenido(lista, 11,2).innerHTML;
+            parcial = parcial.substring(parcial.indexOf('">')+2, parcial.indexOf("</span>"));
+            parcial = parcial.replace(/\./g, "").replace(/\,/g, "").trim();
+            planeta.metal_produccion_amplificador = parseInt(parcial);
             // geologo
             parcial = getContenido(lista, 12,2).innerHTML;
             parcial = parcial.substring(parcial.indexOf('">')+2, parcial.indexOf("</span>"));
@@ -1770,11 +1825,6 @@
             parcial = parcial.replace(/\./g, "").replace(/\,/g, "").trim();
             planeta.metal_oficiales = parseInt(parcial);
 
-            // taladrador
-            parcial = getContenido(lista, 9,2).innerHTML;
-            parcial = parcial.substring(parcial.indexOf('">')+2, parcial.indexOf("</span>"));
-            parcial = parcial.replace(/\./g, "").replace(/\,/g, "").trim();
-            planeta.metal_taladrador = parseInt(parcial);
 
             // class
             parcial = getContenido(lista, 15,2).innerHTML;
@@ -1820,7 +1870,7 @@
             planeta.cristal_geologo = parseInt(parcial);
 			
 			// oficiales
-            parcial = getContenido(lista, 15,3).innerHTML;
+            parcial = getContenido(lista, 14,3).innerHTML;
             parcial = parcial.substring(parcial.indexOf('">')+2, parcial.indexOf("</span>"));
             parcial = parcial.replace(/\./g, "").replace(/\,/g, "").trim();
             planeta.cristal_oficiales = parseInt(parcial);
@@ -2125,9 +2175,9 @@
             
             var tablaPlanetas = "";
             tablaPlanetas += '<table cellspacing="0" cellpadding="0" style="margin-top: 0px;" width="100%">';
-            tablaPlanetas += '<tr><td></td><td></td><td></td><td></td></tr>';
-            tablaPlanetas += '<tr><td class="" align="right" colspan="4"><font color="#FF4000"><p style="font-size:23px">';
-            tablaPlanetas += ' {RECURSOS_PLANETAS} </p></font></td></tr>';
+            tablaPlanetas += '<tr><td></td><td></td><td></td><td><br></td></tr>';
+            tablaPlanetas += '<tr><td class="" align="center" colspan="4"><font color="#FF4000"><p style="font-size:20px">';
+            tablaPlanetas += ' {RECURSOS_PLANETAS} </p></font><br></td></tr>';
             tablaPlanetas += '<tr><td colspan="4"></td></tr>';
             tablaPlanetas += '<tr align="right"><td></td><td>{METAL}</td><td>{CRISTAL}</td><td>{DEUTERIO}</td></tr>';
             
@@ -2157,8 +2207,8 @@
             
             var tablaAlmacen = "";
             tablaAlmacen += '<table cellspacing="0" cellpadding="0" style="margin-top: 0px;" width="100%">';
-            tablaAlmacen += '<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>';
-            tablaAlmacen += '<tr><td align="center" colspan="7"><font color="#FF4000"><p style="font-size:23px">{ALMACEN_TIEMPO} </p></font></td></tr>';
+            tablaAlmacen += '<tr><td></td><td></td><td></td><td></td><td></td><td></td><td><br></td></tr>';
+            tablaAlmacen += '<tr><td align="center" colspan="7"><font color="#FF4000"><p style="font-size:20px">{ALMACEN_TIEMPO} </p></font><br></td></tr>';
             tablaAlmacen += '<tr><td colspan="7"></td></tr>';
             tablaAlmacen += '<tr align="right"><td></td><td>{METAL}</td><td></td><td>{CRISTAL}</td><td></td><td>{DEUTERIO}</td><td></td></tr>';
             
@@ -2220,7 +2270,7 @@
             tabla += '<tr class="" align="right" id="detalleDeuterio_7" style="display:none"><td class="label"> Classe </td><td class="">' + mostrarNumero(classeD) + '</td><td class="">' + mostrarNumero(classeD*24) + '</td><td class="">' + mostrarNumero(classeD*168) + '</td><td class="">' + mostrarNumero(classeD*720) + '</td></tr>';
             tabla += '<tr class="" align="right" id="detalleDeuterio_8" style="display:none"><td class="label"></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td></tr>';
             
-            tabla += '<tr><td colspan="5"></td></tr>';
+            tabla += '<tr><td colspan="5"><br></td></tr>';
             tabla += '<tr class="" align="right"><td class="label">{TOTAL}</td><td class="nomark">' + mostrarNumero((totalM+totalC+totalD)) + '</td><td class="nomark">' + mostrarNumero((totalM+totalC+totalD)*24) + '</td><td class="nomark">' + mostrarNumero((totalM+totalC+totalD)*168) + '</td><td class="momark">' + mostrarNumero((totalM+totalC+totalD)*720) + '</td></tr>';
             tabla += '<tr class="" align="right"><td class="label">{EN_METAL}</td><td class="nomark">' + mostrarNumero((totalM)+((totalC)*1.5)+((totalD)*3)) + '</td><td class="nomark">' + mostrarNumero((totalM*24)+((totalC*24)*1.5)+((totalD*24)*3)) + '</td><td class="nomark">' + mostrarNumero((totalM*168)+((totalC*168)*1.5)+((totalD*168)*3)) + '</td><td class="momark">' + mostrarNumero((totalM*720)+((totalC*720)*1.5)+((totalD*720)*3))+ '</td></tr>';
             tabla += '<tr class="" align="right" height="50"><td colspan="5">' + numPlanets + ' {PLANETAS}:   ' + listaPlanetas.replace(/;/g, "  ") + '</td></tr></form>';
@@ -2237,10 +2287,10 @@
             
             // --- textarea con el BBCode
             // produccion basica
-            textoBB = '{SIZE_GRA}{U}{B}{PRODUCCION_DIARIA_DE} ' + getNombreJugador() + '{/B}{/U} {/SIZE}{SIZE_PEQ}( ' + getFecha() + ' ){/SIZE}{NL}{NL}';
+            textoBB = '{SIZE_GRA}{U}{B}{COLOR_NARANJA}{PRODUCCION_DIARIA_DE} ' + getNombreJugador() + '{/COLOR}{/B}{/U} {/SIZE}{SIZE_PEQ}(' + getFecha() + '){/SIZE}{NL}{NL}';
             textoBB += getStrSummary("basico") + " (" + numPlanets + " {PLANETAS}): {COLOR_METAL}" + mostrarNumero((baseM+minaM+taladradorM+classeM)*24) + "{/COLOR} {METAL}, {COLOR_CRISTAL}" + mostrarNumero((baseC+minaC+taladradorC+classeC)*24) + "{/COLOR} {CRISTAL}, {COLOR_DEUTERIO}" + mostrarNumero(((baseD+minaD+taladradorD+classeD)-gastoFusion)*24) + "{/COLOR} {DEUTERIO}{NL}";			
             textoBB += getStrSummary("plasma") +  ": {COLOR_METAL}" + mostrarNumero(plasmaM*24) + "{/COLOR} " + plasmaSTR_metal + " {METAL}, {COLOR_CRISTAL}" + mostrarNumero(plasmaC*24) + "{/COLOR} " + plasmaSTR_cristal + " {CRISTAL} , {COLOR_DEUTERIO}" +	mostrarNumero(plasmaD*24) + "{/COLOR} " + plasmaSTR_deuterio + " {DEUTERIO} {NL}{NL}";			
-            textoBB += "{SIZE_GRA}{B}" + getStrSummary("total_dia") + " {COLOR_METAL}" + mostrarNumero((baseM+minaM+plasmaM+taladradorM+classeM)*24) + "{/COLOR} {METAL}, {COLOR_CRISTAL}" + mostrarNumero((baseC+minaC+plasmaC+taladradorC+classeC)*24) + "{/COLOR} {CRISTAL}, {COLOR_DEUTERIO}" + mostrarNumero((baseD+minaD-gastoFusion+plasmaD+taladradorD+classeM)*24) + "{/COLOR} {DEUTERIO}{/B}{/SIZE}{NL}{NL}";
+            textoBB += "{SIZE_GRA}{B}" + getStrSummary("total_dia") + " {COLOR_METAL}" + mostrarNumero((baseM+minaM+plasmaM+taladradorM+classeM)*24) + "{/COLOR} {METAL}, {COLOR_CRISTAL}" + mostrarNumero((baseC+minaC+plasmaC+taladradorC+classeC)*24) + "{/COLOR} {CRISTAL}, {COLOR_DEUTERIO}" + mostrarNumero((baseD+minaD-gastoFusion+plasmaD+taladradorD+classeD)*24) + "{/COLOR} {DEUTERIO}{/B}{/SIZE}{NL}{NL}";
             textoBB += "{TOTAL}: {COLOR_TOTAL1}" + mostrarNumero(((baseM+minaM+plasmaM+taladradorM+classeM)*24)+((baseC+minaC+plasmaC+taladradorC+classeC)*24)+((baseD+minaD-gastoFusion+plasmaD+taladradorD+classeD)*24)) + "{/COLOR}{NL}";
             textoBB += "{EN_METAL}: {COLOR_TOTAL2}" + mostrarNumero(((baseM+minaM+plasmaM+taladradorM+classeM)*24)+((baseC+minaC+plasmaC+taladradorC+classeC)*24*3/2)+((baseD+minaD+plasmaD-gastoFusion+taladradorD+classeD)*24*3)) + "{/COLOR}{NL}{NL}";
             textoBB += "{SIZE_PEQ}{METAL}: " + getStrNiveles(1,sep) + "{/SIZE}{NL}";
@@ -2250,13 +2300,14 @@
             bbcode_basico = translate(textoBB);
             
             // produccion completa
-            textoBB = '{SIZE_GRA}{U}{B}{PRODUCCION_DIARIA_DE} ' + getNombreJugador() + '{/B}{/U} {/SIZE}{SIZE_PEQ}( ' + getFecha() + ' ){/SIZE}{NL}{NL}';
+            textoBB = '{SIZE_GRA}{U}{B}{COLOR_NARANJA}{PRODUCCION_DIARIA_DE} ' + getNombreJugador() + '{/COLOR}{/B}{/U} {/SIZE}{SIZE_PEQ}(' + getFecha() + '){/SIZE}{NL}{NL}';
             textoBB += getStrSummary("basico") + " (" + numPlanets + " {PLANETAS}): {COLOR_METAL}" + mostrarNumero((baseM+minaM+taladradorM+classeM)*24) + "{/COLOR} {METAL}, {COLOR_CRISTAL}" + mostrarNumero((baseC+minaC+taladradorC+classeC)*24) + "{/COLOR} {CRISTAL}, {COLOR_DEUTERIO}" + mostrarNumero((baseD+minaD-gastoFusion+taladradorD+classeD)*24) + "{/COLOR} {DEUTERIO}{NL}";
             textoBB += getStrSummary("plasma") +  ": {COLOR_METAL}" + mostrarNumero(plasmaM*24) + "{/COLOR} " + plasmaSTR_metal + " {METAL}, {COLOR_CRISTAL}" + mostrarNumero(plasmaC*24) + "{/COLOR} " + plasmaSTR_cristal + " {CRISTAL}, {COLOR_DEUTERIO}" + mostrarNumero(plasmaD*24) + "{/COLOR}" + plasmaSTR_deuterio + "{DEUTERIO}{NL}";
             textoBB += '{GEOLOGO}' + geoSTR + ": {COLOR_METAL}" + mostrarNumero(geoM*24) + "{/COLOR} {METAL}, {COLOR_CRISTAL}" + mostrarNumero(geoC*24) + "{/COLOR} {CRISTAL}, {COLOR_DEUTERIO}" + mostrarNumero(geoD*24) + "{/COLOR} {DEUTERIO}{NL}";
             textoBB += getStrSummary("amplificador") + ": {COLOR_METAL}" + mostrarNumero(amplificadoresM*24) + "{/COLOR} {METAL}, {COLOR_CRISTAL}" + mostrarNumero(amplificadoresC*24) + "{/COLOR} {CRISTAL}, {COLOR_DEUTERIO}" + mostrarNumero(amplificadoresD*24) + "{/COLOR} {DEUTERIO}{NL}{NL}";
-            textoBB += "{SIZE_GRA}{B}" + getStrSummary("total_dia") + " {COLOR_METAL}" + mostrarNumero(totalM*24) + "{/COLOR} {METAL}, {COLOR_CRISTAL}" + mostrarNumero(totalC*24) + "{/COLOR} {CRISTAL}, {COLOR_DEUTERIO}" + mostrarNumero(totalD*24) + "{/COLOR} {DEUTERIO}{/B}{/SIZE}{NL}{NL}";
-            textoBB += "{TOTAL}: {COLOR_TOTAL1}" + mostrarNumero((totalM*24)+(totalC*24)+(totalD*24)) + "{/COLOR}{NL}";
+			textoBB += "{SIZE_GRA}{B}{COLOR_NARANJA}" + getStrSummary("total_dia") + "{/COLOR}{/B}{/SIZE}{NL}";
+            textoBB += "{SIZE_GRA}{B}{COLOR_METAL}" + mostrarNumero(totalM*24) + "{/COLOR} {METAL}, {COLOR_CRISTAL}" + mostrarNumero(totalC*24) + "{/COLOR} {CRISTAL}, {COLOR_DEUTERIO}" + mostrarNumero(totalD*24) + "{/COLOR} {DEUTERIO}{/B}{/SIZE}{NL}{NL}";
+            textoBB += "{TOTAL}: {COLOR_TOTAL1}" + mostrarNumero((totalM*24)+(totalC*24)+(totalD*24)) + "{/COLOR}{NL}";			
             textoBB += "{EN_METAL}: {COLOR_TOTAL2}" + mostrarNumero((totalM*24)+(totalC*24*3/2)+(totalD*24*3)) + "{/COLOR}{NL}{NL}";
             textoBB += "{SIZE_PEQ}{METAL}: " + getStrNiveles(1,sep) + "{/SIZE}{NL}";
             textoBB += "{SIZE_PEQ}{CRISTAL}: " + getStrNiveles(2,sep) + "{/SIZE}{NL}";
@@ -2264,12 +2315,56 @@
             textoBB += "{SIZE_PEQ}{URL_SCRIPT}{/SIZE}{NL}";
             bbcode_completo = translate(textoBB);
             
+			
+			
+			// produccion basica
+            textoBB = '{SIZE_GRA}{U}{B}{COLOR_NARANJA}{PRODUCCION_DIARIA_DE} ' + getNombreJugador() + '{/COLOR}{/B}{/U} {/SIZE}{SIZE_PEQ}(' + getFecha() + '){/SIZE}{NL}{NL}';
+            textoBB += getStrSummary("basico") + " (" + numPlanets + " {PLANETAS}): {NL}";
+            textoBB += "{COLOR_METAL}" + mostrarNumero((baseM+minaM)*24) + "{/COLOR} {METAL}, {COLOR_CRISTAL}" + mostrarNumero((baseC+minaC)*24) + "{/COLOR} {CRISTAL}, {COLOR_DEUTERIO}" + mostrarNumero((baseD+minaD-gastoFusion)*24) + "{/COLOR} {DEUTERIO}{NL}{NL}";
+            textoBB += getStrSummary("plasma") +  ": {COLOR_METAL}" + mostrarNumero(plasmaM*24) + "{/COLOR} " + plasmaSTR_metal + " {METAL}, {COLOR_CRISTAL}" + mostrarNumero(plasmaC*24) + "{/COLOR} " + plasmaSTR_cristal + " {CRISTAL} , {COLOR_DEUTERIO}" +	mostrarNumero(plasmaD*24) + "{/COLOR} " + plasmaSTR_deuterio + " {DEUTERIO} {NL}{NL}";			
+            textoBB += "{SIZE_GRA}{B}{COLOR_NARANJA}" + getStrSummary("total_dia") + "{/COLOR}{/B}{/SIZE}{NL}";
+            textoBB += "{SIZE_GRA}{B}{COLOR_METAL}" + mostrarNumero((baseM+minaM+plasmaM)*24) + "{/COLOR} {METAL}, {COLOR_CRISTAL}" + mostrarNumero((baseC+minaC+plasmaC)*24) + "{/COLOR} {CRISTAL}, {COLOR_DEUTERIO}" + mostrarNumero((baseD+minaD-gastoFusion+plasmaD)*24) + "{/COLOR} {DEUTERIO}{/B}{/SIZE}{NL}{NL}";
+            textoBB += "{TOTAL}: {COLOR_TOTAL1}" + mostrarNumero(((baseM+minaM+plasmaM)*24)+((baseC+minaC+plasmaC)*24)+((baseD+minaD-gastoFusion+plasmaD)*24)) + "{/COLOR}{NL}";
+            textoBB += "{EN_METAL}: {COLOR_TOTAL2}" + mostrarNumero(((baseM+minaM+plasmaM)*24)+((baseC+minaC+plasmaC)*24*3/2)+((baseD+minaD+plasmaD-gastoFusion)*24*3)) + "{/COLOR}{NL}{NL}";
+            textoBB += "{SIZE_PEQ}{METAL}: " + getStrNiveles(1,sep) + "{/SIZE}{NL}";
+            textoBB += "{SIZE_PEQ}{CRISTAL}: " + getStrNiveles(2,sep) + "{/SIZE}{NL}";
+            textoBB += "{SIZE_PEQ}{DEUTERIO}: " + getStrNiveles(3,sep) + "{/SIZE}{NL}{NL}";
+            textoBB += "{SIZE_PEQ}{URL_SCRIPT}{/SIZE}{NL}";
+            bbcode_basico2 = translate(textoBB);
+
+            // produccion completa
+            textoBB = '{SIZE_GRA}{U}{B}{COLOR_NARANJA}{PRODUCCION_DIARIA_DE} ' + getNombreJugador() + '{/COLOR}{/B}{/U} {/SIZE}{SIZE_PEQ}(' + getFecha() + '){/SIZE}{NL}{NL}';
+            textoBB += getStrSummary("basico") + " (" + numPlanets + " {PLANETAS}): {NL}";
+            textoBB += "{COLOR_METAL}" + mostrarNumero((baseM+minaM)*24) + "{/COLOR} {METAL}, {COLOR_CRISTAL}" + mostrarNumero((baseC+minaC)*24) + "{/COLOR} {CRISTAL}, {COLOR_DEUTERIO}" + mostrarNumero((baseD+minaD-gastoFusion)*24) + "{/COLOR} {DEUTERIO}{NL}{NL}";
+            textoBB += getStrSummary("plasma") +  ": {COLOR_METAL}" + mostrarNumero(plasmaM*24) + "{/COLOR} " + plasmaSTR_metal + " {METAL}, {COLOR_CRISTAL}" + mostrarNumero(plasmaC*24) + "{/COLOR} " + plasmaSTR_cristal + " {CRISTAL}, {COLOR_DEUTERIO}" + mostrarNumero(plasmaD*24) + "{/COLOR}" + plasmaSTR_deuterio + "{DEUTERIO}{NL}{NL}";
+            textoBB += "Taladradores: {NL}";
+            textoBB += "{COLOR_METAL}" + mostrarNumero((taladradorM)*24) + "{/COLOR} {METAL}, {COLOR_CRISTAL}" + mostrarNumero((taladradorC)*24) + "{/COLOR} {CRISTAL}, {COLOR_DEUTERIO}" + mostrarNumero((taladradorD)*24) + "{/COLOR} {DEUTERIO}{NL}{NL}";
+            textoBB += getStrSummary("recolector") + ":{NL}";
+            textoBB += "{COLOR_METAL}" + mostrarNumero((classeM)*24) + "{/COLOR} {METAL}, {COLOR_CRISTAL}" + mostrarNumero((classeC)*24) + "{/COLOR} {CRISTAL}, {COLOR_DEUTERIO}" + mostrarNumero((classeD)*24) + "{/COLOR} {DEUTERIO}{NL}{NL}";
+			textoBB += '{GEOLOGO}' + geoSTR + ":{NL}";
+            textoBB += "{COLOR_METAL}" + mostrarNumero(geoM*24) + "{/COLOR} {METAL}, {COLOR_CRISTAL}" + mostrarNumero(geoC*24) + "{/COLOR} {CRISTAL}, {COLOR_DEUTERIO}" + mostrarNumero(geoD*24) + "{/COLOR} {DEUTERIO}{NL}{NL}";
+            textoBB += getStrSummary("amplificador") + ":{NL}";
+            textoBB += "{COLOR_METAL}" + mostrarNumero(amplificadoresM*24) + "{/COLOR} {METAL}, {COLOR_CRISTAL}" + mostrarNumero(amplificadoresC*24) + "{/COLOR} {CRISTAL}, {COLOR_DEUTERIO}" + mostrarNumero(amplificadoresD*24) + "{/COLOR} {DEUTERIO}{NL}{NL}";            
+            textoBB += "{SIZE_GRA}{B}{COLOR_NARANJA}" + getStrSummary("total_dia") + "{/COLOR}{/B}{/SIZE}{NL}";
+            textoBB += "{SIZE_GRA}{B}{COLOR_METAL}" + mostrarNumero(totalM*24) + "{/COLOR} {METAL}, {COLOR_CRISTAL}" + mostrarNumero(totalC*24) + "{/COLOR} {CRISTAL}, {COLOR_DEUTERIO}" + mostrarNumero(totalD*24) + "{/COLOR} {DEUTERIO}{/B}{/SIZE}{NL}{NL}";
+            textoBB += "{TOTAL}: {COLOR_TOTAL1}" + mostrarNumero((totalM*24)+(totalC*24)+(totalD*24)) + "{/COLOR}{NL}";
+            textoBB += "{EN_METAL}: {COLOR_TOTAL2}" + mostrarNumero((totalM*24)+(totalC*24*3/2)+(totalD*24*3)) + "{/COLOR}{NL}{NL}";
+            textoBB += "{SIZE_PEQ}{METAL}: " + getStrNiveles(1,sep) + "{/SIZE}{NL}";
+            textoBB += "{SIZE_PEQ}{CRISTAL}: " + getStrNiveles(2,sep) + "{/SIZE}{NL}";
+            textoBB += "{SIZE_PEQ}{DEUTERIO}: " + getStrNiveles(3,sep) + "{/SIZE}{NL}{NL}";
+            textoBB += "{SIZE_PEQ}{URL_SCRIPT}{/SIZE}{NL}";
+            bbcode_completo2 = translate(textoBB);
+			
+			
+			
             
             produccionBB = '<p align="center"><br><textarea id="txtBB" name="txtBB" style="background-color:##0000FF;width:600px;height:100px;border: 2px solid #990000;" rows="5" cols="20" onclick="this.focus();this.select()" readonly="readonly">';
             produccionBB += codificar(bbcode_basico, "phpbb")
             produccionBB += '</textarea><br>';
             produccionBB += '<input id="op_p_bas" type="radio" name="tipo_bbc" value="basica" checked="checked">{PRODUCCION_BASICA}</input><br>';
-            produccionBB += '<input id="op_p_comp" type="radio" name="tipo_bbc" value="completa">{PRODUCCION_COMPLETA}</input><br></p>';
+            produccionBB += '<input id="op_p_comp" type="radio" name="tipo_bbc" value="completa">{PRODUCCION_COMPLETA}</input><br>';
+			produccionBB += '<input id="op_p_bas2" type="radio" name="tipo_bbc" value="basica2">{PRODUCCION_BASICA}</input><br>';
+            produccionBB += '<input id="op_p_comp2" type="radio" name="tipo_bbc" value="completa2">{PRODUCCION_COMPLETA}</input><br></p>';
             produccionBB += '<br><br><div id="preview" style="margin:25px">' + codificar(bbcode_basico, "html") + '</div>';
             
             
@@ -2290,15 +2385,18 @@
             txtTablaFlotas += generarFilaProduccion("{C_LIGERO}", metalD, cristalD, deuD, 3000, 1000, 0, "alt");
             txtTablaFlotas += generarFilaProduccion("{C_PESADO}", metalD, cristalD, deuD, 6000, 4000, 0);
             txtTablaFlotas += generarFilaProduccion("{CRUCERO}", metalD, cristalD, deuD, 20000, 7000, 2000, "alt");
-            txtTablaFlotas += generarFilaProduccion("{NBATALLA}", metalD, cristalD, deuD, 45000, 15000, 0);
-            txtTablaFlotas += generarFilaProduccion("{COLONIZADOR}", metalD, cristalD, deuD, 10000, 20000, 10000, "alt");
-            txtTablaFlotas += generarFilaProduccion("{RECICLADOR}", metalD, cristalD, deuD, 10000, 6000, 2000);
-            txtTablaFlotas += generarFilaProduccion("{SONDA}", metalD, cristalD, deuD, 0, 1000,0, "alt");
-            txtTablaFlotas += generarFilaProduccion("{BOMBARDERO}", metalD, cristalD, deuD, 50000, 25000, 15000);
-            txtTablaFlotas += generarFilaProduccion("{DESTRUCTOR}", metalD, cristalD, deuD, 60000, 50000, 15000, "alt");
+            txtTablaFlotas += generarFilaProduccion("{EXPLORADOR}", metalD, cristalD, deuD, 8000, 15000, 8000);
+            txtTablaFlotas += generarFilaProduccion("{NBATALLA}", metalD, cristalD, deuD, 45000, 15000, 0, "alt");
+            txtTablaFlotas += generarFilaProduccion("{COLONIZADOR}", metalD, cristalD, deuD, 10000, 20000, 10000);
+            txtTablaFlotas += generarFilaProduccion("{RECICLADOR}", metalD, cristalD, deuD, 10000, 6000, 2000, "alt");
+            txtTablaFlotas += generarFilaProduccion("{SONDA}", metalD, cristalD, deuD, 0, 1000,0);
+            txtTablaFlotas += generarFilaProduccion("{BOMBARDERO}", metalD, cristalD, deuD, 50000, 25000, 15000, "alt");
+            txtTablaFlotas += generarFilaProduccion("{DESTRUCTOR}", metalD, cristalD, deuD, 60000, 50000, 15000);
+            txtTablaFlotas += generarFilaProduccion("{SEGADOR}", metalD, cristalD, deuD, 85000, 55000, 20000, "alt");
             txtTablaFlotas += generarFilaProduccion("{EDLM}", metalD, cristalD, deuD, 5000000, 4000000, 1000000);
             txtTablaFlotas += generarFilaProduccion("{ACORAZADO}", metalD, cristalD, deuD, 30000, 40000, 15000, "alt");
-            txtTablaFlotas += generarFilaProduccion("{SATELITE}", metalD, cristalD, deuD, 0, 2000, 500, "");
+            txtTablaFlotas += generarFilaProduccion("{SATELITE}", metalD, cristalD, deuD, 0, 2000, 500);
+            txtTablaFlotas += generarFilaProduccion("{TALADRADOR}", metalD, cristalD, deuD, 2000, 2000, 1000, "");
             txtTablaFlotas += '</table>';
             
             // --- tabla de produccion de defensas ---
@@ -2312,7 +2410,7 @@
             txtTablaDef += generarFilaProduccion("{LASER_PEQ}", metalD, cristalD, deuD, 1500, 500, 0);
             txtTablaDef += generarFilaProduccion("{LASER_GRA}", metalD, cristalD, deuD, 6000, 2000, 0, "alt");
             txtTablaDef += generarFilaProduccion("{C_GAUS}", metalD, cristalD, deuD, 20000, 15000, 2000);
-            txtTablaDef += generarFilaProduccion("{C_IONICO}", metalD, cristalD, deuD, 2000, 6000, 0, "alt");
+            txtTablaDef += generarFilaProduccion("{C_IONICO}", metalD, cristalD, deuD, 5000, 3000, 0, "alt");
             txtTablaDef += generarFilaProduccion("{C_PLASMA}", metalD, cristalD, deuD, 50000, 50000, 30000);
             txtTablaDef += generarFilaProduccion("{M_ANTI}", metalD, cristalD, deuD, 8000, 0, 2000, "alt");
             txtTablaDef += generarFilaProduccion("{M_PLAN}", metalD, cristalD, deuD, 15500, 2500, 10000);
@@ -2322,7 +2420,6 @@
             var txtFinal = '<p align="center"><br><br><br><font size="1"><br><br>';
             txtFinal += '<a href="https://openuserjs.org/scripts/jgarrone/OGame_Recursos_Ampliados" target="_blank">OGame Recursos Ampliados by The Undertaker</a><br>';
             txtFinal += '[version: ' + SCRIPT_VERSION +  ']<br><br>{TRANSLATE_BY}<BR></font>';
-            txtFinal += '<br><strong>Proximamente nueva versión con las modificaciones a versión 7.0.0 de OGAME<br><br>';
             txtFinal += '<a href="javascript:localStorage.clear();location.reload();" target="">Reset-Data</a><br></p>';
             
             
@@ -2417,6 +2514,12 @@
             
             obj = document.getElementById("op_p_comp");
             addEvent(obj, "click", function(){setTxtBBCode(1)});
+			
+			obj = document.getElementById("op_p_bas2");
+            addEvent(obj, "click", function(){setTxtBBCode(2)});
+            
+            obj = document.getElementById("op_p_comp2");
+            addEvent(obj, "click", function(){setTxtBBCode(3)});
             
             
         }
